@@ -13,6 +13,11 @@
 #include <signal.h>
 
 int _shell(char **av);
-
+int count_args(char *str);
+char **allocate_space(int size);
+int get_args(char *args, char **argv, char *delim);
+size_t get_len(char **av);
+int tokenize(char *args, char **av);
+int execute(char **av, char **argv, int i);
 
 #endif /* SHELL_H */

@@ -10,8 +10,7 @@
 
 int main(int argc, char **av, char **env)
 {
-	char **argv, *tok, *args;
-	int i = 0, j = 1, k = 1;
+	char **argv, *delim, *args;
 	size_t len = 0;
 
 	(void) env;
@@ -20,38 +19,16 @@ int main(int argc, char **av, char **env)
 		_shell(av);
 	else
 	{
-		argv = malloc(sizeof(char *) * argc);
-		if (!argv)
-			return (1);
-		while (av[k])
-		{
-			len += strlen(av[k]);
-			k++;
-		}
+		argv = allocate_space(argc);
+		len = get_len(av);
 		len += argc;
 		args = malloc(sizeof(char) * len);
-		if (!arg)
-			return (-1);
-		while (av[j])
-		{
-			strcat(args, av[j]);
-			strcat(args, " ");
-			j++;
-		}
-		tok = strtok(args, " ");
-		while (tok)
-		{
-			argv[i] = tok;
-			tok = strtok(NULL, " ");
-			i++;
-		}
-		argv[i] = NULL;
-		if (execve(argv[1], av, NULL) == -1)
-		{
-			printf("%s: No such file or directory\n", av[0]);
-			free(argv);
-			return (1);
-		}
+		if (!args)
+			exit(EXIT_FAILURE);
+		tokenize(args, av);
+		delim = " ";
+		get_args(args, argv, delim);
+		execute(av, argv, 1);
 	}
 	free(argv);
 	return (0);
