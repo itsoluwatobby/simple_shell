@@ -20,5 +20,6 @@ size_t get_len(char **av);
 int tokenize(char *args, char **av);
 int execute(char **av, char **argv, int i);
 char *find_path(char *command);
+void handle_env(void);
 
 #endif /* SHELL_H */

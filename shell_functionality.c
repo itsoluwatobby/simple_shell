@@ -26,6 +26,11 @@ int _shell(char **av)
 		argv = allocate_space(ac);
 		delim = " \n";
 		get_args(args, argv, delim);
+		if (strcmp(argv[0], "env") == 0)
+		{
+			handle_env();
+			exit(98);
+		}
 		child_id = fork();
 		if (child_id == -1)
 		{
