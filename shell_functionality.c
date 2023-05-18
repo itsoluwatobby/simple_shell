@@ -18,7 +18,10 @@ int _shell(char **av)
 		if (isatty(STDIN_FILENO))
 			printf("$ ");
 		if (getline(&args, &size, stdin) == -1)
+		{
+			perror("Shell Exited!");
 			exit(EXIT_FAILURE);
+		}
 		ac = count_args(args);
 		argv = allocate_space(ac);
 		delim = " \n";

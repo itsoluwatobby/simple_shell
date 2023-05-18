@@ -14,7 +14,7 @@ int get_args(char *args, char **argv, char *delim)
 	char *tok;
 	char *temp;
 	int i = 0;
-	
+
 	temp = strdup(args);
 	tok = strtok(temp, delim);
 	while (tok)
