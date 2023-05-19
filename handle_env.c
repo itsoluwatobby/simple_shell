@@ -6,7 +6,7 @@
 
 void handle_env(void)
 {
-	extern char **environ;
+	/*extern char **environ;*/
 	char **env = environ;
 
 	for (; *env != NULL; env++)
