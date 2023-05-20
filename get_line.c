@@ -5,10 +5,10 @@
  * @lineptr: agrguments parsed
  * @n: init size is 0
  * @fd: file descriptor
- * Return: bytes read
+ * Return: 0 on succes, otherwise -1
  */
 
-void get_line(char **lineptr, size_t *n, int fd)
+int get_line(char **lineptr, size_t *n, int fd)
 {
 	static int defaultSize = 120;
 
@@ -17,7 +17,7 @@ void get_line(char **lineptr, size_t *n, int fd)
 	char *buffer = NULL, c;
 
 	if (lineptr == NULL || n == NULL)
-		return;
+		return (-1);
 	if (*lineptr == NULL || *n == 0)
 	{
 		bufSize = defaultSize;
@@ -48,20 +48,5 @@ void get_line(char **lineptr, size_t *n, int fd)
 	buffer[bytes] = '\0';
 
 	write(STDOUT_FILENO, *lineptr, bytes);
-}
-
-/**
- * main - runs the custom get_line function
- * Return: onSuccess 0
-*/
-
-int main(void)
-{
-	char *line_entry = NULL;
-	size_t size = 0;
-
-	get_line(&line_entry, &size, STDIN_FILENO);
-
-	free(line_entry);
 	return (0);
 }

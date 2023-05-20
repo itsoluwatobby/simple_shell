@@ -29,8 +29,11 @@ char *get_memory(int bufs)
 char *reallocate_memory(char *buf, int bufs)
 {
 	char *result;
+	int i;
+	
+	i = _strlen(buf);
 
-	result = (char *)realloc(buf, bufs);
+	result = (char *) _realloc(buf, i, bufs);
 	if (result == NULL)
 	{
 		perror("Unable to allocate memory");

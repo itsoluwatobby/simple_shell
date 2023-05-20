@@ -13,8 +13,8 @@ int tokenize(char *args, char **av)
 
 	while (av[i])
 	{
-		strcat(args, av[i]);
-		strcat(args, " ");
+		_strcat(args, av[i]);
+		_strcat(args, " ");
 		i++;
 	}
 	return (i);

@@ -11,7 +11,7 @@
 int main(int argc, char **av, char **env)
 {
 	char **argv, *delim, *args;
-	size_t len = 0;
+	int len = 0;
 
 	(void) env;
 

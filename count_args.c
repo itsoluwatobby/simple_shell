@@ -11,7 +11,7 @@ int count_args(char *str)
 	int ac = 0;
 	char *temp, *tok;
 
-	temp = strdup(str);
+	temp = _strdup(str);
 	tok = strtok(temp, " \n");
 	if (!tok)
 		exit(EXIT_FAILURE);
