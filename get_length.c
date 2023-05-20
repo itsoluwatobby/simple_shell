@@ -8,12 +8,11 @@
 
 size_t get_len(char **av)
 {
-	size_t len = 0;
-	int i = 1;
+	int i = 1, len = 0;
 
 	while (av[i])
 	{
-		len += strlen(av[i]);
+		len += _strlen(av[i]);
 		i++;
 	}
 	return (len);

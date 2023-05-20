@@ -16,8 +16,8 @@ int _shell(char **av)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("$ ");
-		if (getline(&args, &size, stdin) == -1)
+			print_string("$ ");
+		if (get_line(&args, &size, STDIN_FILENO) == -1)
 		{
 			perror("Shell Exited!");
 			exit(EXIT_FAILURE);
@@ -26,6 +26,11 @@ int _shell(char **av)
 		argv = allocate_space(ac);
 		delim = " \n";
 		get_args(args, argv, delim);
+		if (_strcmp(argv[0], "env") == 0)
+		{
+			handle_env();
+			exit(98);
+		}
 		child_id = fork();
 		if (child_id == -1)
 		{
