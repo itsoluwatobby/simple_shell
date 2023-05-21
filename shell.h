@@ -36,5 +36,7 @@ char *_strdup(char *str);
 char *str_concat(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 int get_prompt(void);
+void special_commands(char *command);
+int _setenv(char *args);
 
 #endif /* SHELL_H */

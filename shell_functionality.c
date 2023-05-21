@@ -26,7 +26,9 @@ int _shell(char **av)
 		argv = allocate_space(ac);
 		delim = " \n";
 		get_args(args, argv, delim);
-		if (_strcmp(argv[0], "exit") == 0)
+		
+		special_commands(argv[0]);
+		/*if (_strcmp(argv[0], "exit") == 0)
 		{
 			free(argv);
 			exit(EXIT_SUCCESS);
@@ -35,7 +37,7 @@ int _shell(char **av)
 		{
 			handle_env();
 			exit(98);
-		}
+		}*/
 		child_id = fork();
 		if (child_id == -1)
 		{
