@@ -10,15 +10,15 @@ int _setenv(char *args)
 	char *token, *name = NULL, *value = NULL, *delimiter = "=";
 	/*int success;*/
 
-	token = strtok(args, delimiter);
+	token = _strtok(args, delimiter);
 	while (token != NULL)
 	{
 		if (name == NULL)
-			name = strdup(token);
+			name = _strdup(token);
 		else
-			value = strdup(token);
+			value = _strdup(token);
 
-		token = strtok(NULL, delimiter);
+		token = _strtok(NULL, delimiter);
 	}
 	if (name == NULL || value == NULL)
 	{
@@ -36,7 +36,7 @@ int _setenv(char *args)
 	printf("%s set\n", name);
 	return (0);
 }
-
+/**
 int main(int argc, char **argv)
 {
 	char **new;
@@ -58,3 +58,4 @@ int main(int argc, char **argv)
 	free(new);
 	return (0);
 }
+**/

@@ -25,9 +25,9 @@ int get_prompt(void)
 	}
 	getcwd(str, 100);
 	str_cpy = _strdup(str);
-	tok = strtok(str_cpy, "/");
+	tok = _strtok(str_cpy, "/");
 	k = _strlen(tok);
-	tok = strtok(NULL, "/");
+	tok = _strtok(NULL, "/");
 	free(str_cpy);
 	i = _strlen(tok);
 	_strcpy(prompt, "root");
@@ -62,24 +62,3 @@ int get_prompt(void)
 	free(prompt);
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

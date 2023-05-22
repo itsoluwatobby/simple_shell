@@ -16,12 +16,12 @@ int get_args(char *args, char **argv, char *delim)
 	int i = 0;
 
 	temp = _strdup(args);
-	tok = strtok(temp, delim);
+	tok = _strtok(temp, delim);
 	while (tok)
 	{
 		argv[i] = _strdup(tok);
 		i++;
-		tok = strtok(NULL, delim);
+		tok = _strtok(NULL, delim);
 	}
 	argv[i] = NULL;
 	return (i);
