@@ -47,6 +47,6 @@ int get_line(char **lineptr, size_t *n, int fd)
 	}
 	buffer[bytes] = '\0';
 
-	write(STDOUT_FILENO, *lineptr, bytes);
+	/*write(STDOUT_FILENO, *lineptr, bytes);*/
 	return (0);
 }

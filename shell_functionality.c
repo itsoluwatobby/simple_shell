@@ -27,17 +27,11 @@ int _shell(char **av)
 		delim = " \n";
 		get_args(args, argv, delim);
 		
+		printf("he=%s  al=%s", argv[0], argv[1]);
+
 		special_commands(argv[0]);
-		/*if (_strcmp(argv[0], "exit") == 0)
-		{
-			free(argv);
-			exit(EXIT_SUCCESS);
-		}
-		if (_strcmp(argv[0], "env") == 0)
-		{
-			handle_env();
-			exit(98);
-		}*/
+		/*if (_strcmp(argv[1], "$?") || _strcmp(argv[1], "$$"))
+			get_pid(argv[1]);*/
 		child_id = fork();
 		if (child_id == -1)
 		{
