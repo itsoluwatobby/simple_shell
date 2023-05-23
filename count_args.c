@@ -12,12 +12,12 @@ int count_args(char *str)
 	char *temp, *tok;
 
 	temp = _strdup(str);
-	tok = strtok(temp, " \n");
+	tok = _strtok(temp, " \n");
 	if (!tok)
 		exit(EXIT_FAILURE);
 	while (tok)
 	{
-		tok = strtok(NULL, " \n");
+		tok = _strtok(NULL, " \n");
 		ac++;
 	}
 	free(temp);

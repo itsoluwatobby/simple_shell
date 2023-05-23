@@ -14,7 +14,7 @@ char *find_path(char *command)
 	if (!command_path)
 		return (NULL);
 	copy = _strdup(command_path);
-	token = strtok(copy, delimiter);
+	token = _strtok(copy, delimiter);
 	while (token != NULL)
 	{
 		token_length = _strlen(token);
@@ -34,7 +34,7 @@ char *find_path(char *command)
 			return (full_path);
 		}
 		free(full_path);
-		token = strtok(NULL, delimiter);
+		token = _strtok(NULL, delimiter);
 	}
 	free(copy);
 	if (stat(command, &buffer) == 0)

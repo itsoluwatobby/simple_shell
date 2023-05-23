@@ -16,7 +16,7 @@ int _shell(char **av)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			print_string("$ ");
+			get_prompt();
 		if (get_line(&args, &size, STDIN_FILENO) == -1)
 		{
 			perror("Shell Exited!");
@@ -26,11 +26,18 @@ int _shell(char **av)
 		argv = allocate_space(ac);
 		delim = " \n";
 		get_args(args, argv, delim);
+		
+		special_commands(argv[0]);
+		/*if (_strcmp(argv[0], "exit") == 0)
+		{
+			free(argv);
+			exit(EXIT_SUCCESS);
+		}
 		if (_strcmp(argv[0], "env") == 0)
 		{
 			handle_env();
 			exit(98);
-		}
+		}*/
 		child_id = fork();
 		if (child_id == -1)
 		{
