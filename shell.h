@@ -37,10 +37,11 @@ char *str_concat(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 int get_prompt(void);
 void special_commands(char *command);
-int _setenv(char *args);
 char *_strtok(char *str, char *sep);
 unsigned int _strspn(char *s, char *accept);
 char *_strchr(char *s, char c);
 int _strcspn(char *s1, char *s2);
+void _setenv(char *name, char *value);
+void check_var(char *argv);
 
 #endif /* SHELL_H */
