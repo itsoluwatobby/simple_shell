@@ -13,7 +13,7 @@ int change_dir(char **av, char **env)
 	int i = 0;
 
 	dir = _get_env("PWD", env);
-	if (av[1] == NULL)
+	if (av[1] != NULL)
 	{
 		if (av[1][0] == '-')
 		{
@@ -26,12 +26,12 @@ int change_dir(char **av, char **env)
 	}
 	else
 	{
-		curr = _get_env("HOME", 	env);
+		curr = _get_env("HOME", env);
 	}
 	i = chdir(curr);
 	if (i != -1)
 	{
-		_setenv("OLDPWD", pwd, env);
+		_setenv("OLDPWD", dir, env);
 		_setenv("PWD", curr, env);
 	}
 	return (i);

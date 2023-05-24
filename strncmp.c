@@ -15,7 +15,7 @@ int _strncmp(char *str1, char *str2, int c)
 {
 	int i = 0, ret = 0;
 
-	while (str2[i] && i < n)
+	while (str2[i] && i < c)
 	{
 		if (str1[i] != str2[i])
 		{

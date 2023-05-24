@@ -11,7 +11,7 @@ void special_commands(char **command, char **env)
 {
 	if (_strcmp(command[0], "exit") == 0)
 	{
-		_exit(command, env);
+		__exit(command, env);
 	}
 	if (_strcmp(command[0], "env") == 0)
 	{

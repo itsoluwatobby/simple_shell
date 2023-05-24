@@ -1,4 +1,4 @@
-#incude "shell.h"
+#include "shell.h"
 
 /**
  * _get_env - gets the env variable
@@ -15,7 +15,7 @@ char *_get_env(char *arg, char **env)
 	len = _strlen(arg);
 	while (env[i])
 	{
-		if (_strcmp(env[i], arg, len) == 0)
+		if (_strncmp(env[i], arg, len) == 0)
 		{
 			ret = env[i];
 			break;
