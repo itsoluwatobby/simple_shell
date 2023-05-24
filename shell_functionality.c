@@ -9,17 +9,11 @@
 int _shell(char **av)
 {
 	char *args, **argv, *delim, **envptr;
-	int ac = 0, i = 0;
+	int ac = 0;
 	pid_t child_id;
 	size_t size = 0;
 
-	while(environ[i])
-		i++;
-	envptr = allocate_space(i);
-	for (i = 0; environ[i]; i++)
-		envptr[i] = _strdup(environ[i]);
-	environ[i] = NULL;
-
+	envptr = allocate_env();
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
