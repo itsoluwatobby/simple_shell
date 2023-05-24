@@ -8,7 +8,7 @@
 
 int _shell(char **av)
 {
-	char *args, **argv, *delim;
+	char *args, **argv, *delim, **env = environ;
 	int ac = 0;
 	pid_t child_id;
 	size_t size = 0;
@@ -26,12 +26,10 @@ int _shell(char **av)
 		argv = allocate_space(ac);
 		delim = " \n";
 		get_args(args, argv, delim);
-		
-		printf("he=%s  al=%s", argv[0], argv[1]);
-
+	
 		special_commands(argv[0]);
-		/*if (_strcmp(argv[1], "$?") || _strcmp(argv[1], "$$"))
-			get_pid(argv[1]);*/
+		if (_strcmp(argv[0], "cd") == 0)
+			change_dir(argv, env);
 		child_id = fork();
 		if (child_id == -1)
 		{

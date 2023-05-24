@@ -4,7 +4,7 @@
  * get_prompt - creates prompt string
  *
  * Return: 0 success, otherwise 1.
- */	
+ */
 
 int get_prompt(void)
 {
@@ -48,7 +48,7 @@ int get_prompt(void)
 	prompt[++i] = '/';
 	i++;
 	j = k + 2;
-	while(str[j])
+	while (str[j])
 	{
 		prompt[i] = str[j];
 		i++;

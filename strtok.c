@@ -9,7 +9,7 @@
 
 char *_strtok(char *str, char *sep)
 {
-	static char *ptr = NULL;
+	static char *ptr;
 
 	if (!str)
 	{

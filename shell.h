@@ -43,5 +43,9 @@ char *_strchr(char *s, char c);
 int _strcspn(char *s1, char *s2);
 void _setenv(char *name, char *value);
 void check_var(char *argv);
+int _strncmp(char *str1, char *str2, int c);
+char *_get_env(char *arg, char **env);
+void free_vector(char **arr);
+int change_dir(char **av, char **env);
 
 #endif /* SHELL_H */
