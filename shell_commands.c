@@ -3,19 +3,21 @@
 /**
  * special_commands - function that checks for some specific commands
  * @command: command to check
- * Return: onSuccess (0)
+ * @env: the environment
+ * Return: void
  */
 
-void special_commands(char *command)
+void special_commands(char **command, char **env)
 {
-	if (_strcmp(command, "exit") == 0)
+	if (_strcmp(command[0], "exit") == 0)
 	{
-		free(command);
-		exit(EXIT_SUCCESS);
+		__exit(command, env);
 	}
-	if (_strcmp(command, "env") == 0)
+	if (_strcmp(command[0], "env") == 0)
 	{
 		handle_env();
 		exit(98);
 	}
+	if (_strcmp(command[0], "cd") == 0)
+		change_dir(command, env);
 }

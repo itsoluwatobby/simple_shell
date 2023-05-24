@@ -30,7 +30,7 @@ char *reallocate_memory(char *buf, int bufs)
 {
 	char *result;
 	int i;
-	
+
 	i = _strlen(buf);
 
 	result = (char *) _realloc(buf, i, bufs);

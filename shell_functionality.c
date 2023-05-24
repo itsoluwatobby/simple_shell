@@ -8,10 +8,17 @@
 
 int _shell(char **av)
 {
-	char *args, **argv, *delim;
-	int ac = 0;
+	char *args, **argv, *delim, **envptr;
+	int ac = 0, i = 0;
 	pid_t child_id;
 	size_t size = 0;
+
+	while(environ[i])
+		i++;
+	envptr = allocate_space(i);
+	for (i = 0; environ[i]; i++)
+		envptr[i] = _strdup(environ[i]);
+	environ[i] = NULL;
 
 	while (1)
 	{
@@ -26,16 +33,12 @@ int _shell(char **av)
 		argv = allocate_space(ac);
 		delim = " \n";
 		get_args(args, argv, delim);
-		
-		printf("he=%s  al=%s", argv[0], argv[1]);
-
-		special_commands(argv[0]);
-		/*if (_strcmp(argv[1], "$?") || _strcmp(argv[1], "$$"))
-			get_pid(argv[1]);*/
+		special_commands(argv, envptr);
 		child_id = fork();
 		if (child_id == -1)
 		{
-			free(argv);
+			free_vector(argv);
+			free_vector(envptr);
 			exit(EXIT_FAILURE);
 		}
 		if (child_id == 0)
@@ -45,8 +48,9 @@ int _shell(char **av)
 		else
 		{
 			wait(NULL);
-			free(argv);
+			free_vector(argv);
 		}
 	}
+	free_vector(envptr);
 	return (0);
 }
