@@ -6,23 +6,15 @@
  * Return: 0 success, otherwise 1.
  */
 
-int get_prompt(void)
+void get_prompt(void)
 {
 	char *prompt, *str, *tok, *host, *str_cpy;
 	int i, j, k;
 
-	prompt = malloc(sizeof(char) * 100);
-	str = malloc(sizeof(char) * 100);
-	host = malloc(sizeof(char) * 100);
-	str_cpy = malloc(sizeof(char) * 100);
-	if (prompt == NULL || str == NULL || host == NULL || str_cpy == NULL)
-	{
-		free(prompt);
-		free(str);
-		free(host);
-		free(str_cpy);
-		return (1);
-	}
+	prompt = get_memory(100);
+	str = get_memory(100);
+	host = get_memory(100);
+	str_cpy = get_memory(100);
 	getcwd(str, 100);
 	str_cpy = _strdup(str);
 	tok = _strtok(str_cpy, "/");
@@ -43,10 +35,7 @@ int get_prompt(void)
 		j++;
 	}
 	free(host);
-	prompt[i] = ':';
-	prompt[++i] = '~';
-	prompt[++i] = '/';
-	i++;
+	add_to_prompt(prompt, ":~/", &i);
 	j = k + 2;
 	while (str[j])
 	{
@@ -55,10 +44,8 @@ int get_prompt(void)
 		j++;
 	}
 	free(str);
-	prompt[i] = '#';
-	prompt[++i] = ' ';
+	add_to_prompt(prompt, "# ", &i);
 	prompt[++i] = '\0';
 	print_string(prompt);
 	free(prompt);
-	return (0);
 }
