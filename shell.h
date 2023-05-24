@@ -36,7 +36,7 @@ char *_strdup(char *str);
 char *str_concat(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 int get_prompt(void);
-void special_commands(char *command);
+void special_commands(char **command, char **env);
 char *_strtok(char *str, char *sep);
 unsigned int _strspn(char *s, char *accept);
 char *_strchr(char *s, char c);
@@ -47,5 +47,6 @@ int _strncmp(char *str1, char *str2, int c);
 char *_get_env(char *arg, char **env);
 void free_vector(char **arr);
 int change_dir(char **av, char **env);
+void _exit(char **av, char **env);
 
 #endif /* SHELL_H */

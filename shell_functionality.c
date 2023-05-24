@@ -26,10 +26,7 @@ int _shell(char **av)
 		argv = allocate_space(ac);
 		delim = " \n";
 		get_args(args, argv, delim);
-	
-		special_commands(argv[0]);
-		if (_strcmp(argv[0], "cd") == 0)
-			change_dir(argv, env);
+		special_commands(argv, env);
 		child_id = fork();
 		if (child_id == -1)
 		{
@@ -43,7 +40,10 @@ int _shell(char **av)
 		else
 		{
 			wait(NULL);
+			free_vector(argv);
 			free(argv);
+			free_vector(env);
+			free(env);
 		}
 	}
 	return (0);
