@@ -25,5 +25,9 @@ int _strcspn(char *s1, char *s2);
 int _strncmp(char *str1, char *str2, int c);
 int _atoi(char *s);
 char *_strstr(char *haystack, char *needle);
-
+int count_args(char *str);
+char **allocate_space(int size);
+void _shell(char **av);
+void execute(char **av, char **argv);
+void rm_newline(char *str);
 #endif /* SHELL_H */
