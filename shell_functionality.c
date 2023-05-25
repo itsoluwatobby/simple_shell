@@ -17,11 +17,9 @@ int _shell(char **av)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			/*get_prompt();*/
 			print_string("$$: ");
 		if (get_line(&args, &size, STDIN_FILENO) == -1)
 		{
-			/*free(envptr);*/
 			perror("Shell Exited!");
 			exit(EXIT_SUCCESS);
 		}

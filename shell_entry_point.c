@@ -30,6 +30,7 @@ int main(int argc, char **av, char **env)
 		get_args(args, argv, delim);
 		execute(av, argv, 1);
 	}
+	free(av);
 	free(argv);
 	return (0);
 }

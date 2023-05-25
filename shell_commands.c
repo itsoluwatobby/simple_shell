@@ -9,16 +9,19 @@
 
 void special_commands(char **command, char **env)
 {
-	/*printf("SET = %s    %s", command[0], command[1]);*/
+	/*printf("SET = %s    %s\n", command[0], command[1]);*/
 	if (_strcmp(command[0], "exit") == 0)
 	{
 		__exit(command, env);
+		free(env);
 	}
 	if (_strcmp(command[0], "env") == 0)
 	{
 		handle_env();
-		exit(98);
+		free(env);
 	}
 	if (_strcmp(command[0], "cd") == 0)
+	{
 		change_dir(command, env);
+	}
 }
