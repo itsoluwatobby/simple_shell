@@ -17,10 +17,11 @@ int _shell(char **av)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			get_prompt();
+			/*get_prompt();*/
+			print_string("$$: ");
 		if (get_line(&args, &size, STDIN_FILENO) == -1)
 		{
-			free(envptr);
+			/*free(envptr);*/
 			perror("Shell Exited!");
 			exit(EXIT_SUCCESS);
 		}
@@ -39,6 +40,7 @@ int _shell(char **av)
 		if (child_id == 0)
 		{
 			execute(av, argv, 0);
+			free(argv);
 		}
 		else
 		{

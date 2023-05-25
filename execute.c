@@ -16,7 +16,8 @@ int execute(char **av, char **argv, int i)
 	full_path = find_path(argv[i]);
 	if (execve(full_path, argv, NULL) == -1)
 	{
-		printf("%s: No such directory\n", av[0]);
+		print_string(av[0]);
+		print_string(": No such directory\n");
 		free(argv);
 		exit(EXIT_FAILURE);
 	}
