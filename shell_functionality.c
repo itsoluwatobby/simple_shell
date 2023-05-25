@@ -20,8 +20,9 @@ int _shell(char **av)
 			get_prompt();
 		if (get_line(&args, &size, STDIN_FILENO) == -1)
 		{
+			free(envptr);
 			perror("Shell Exited!");
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 		}
 		ac = count_args(args);
 		argv = allocate_space(ac);
