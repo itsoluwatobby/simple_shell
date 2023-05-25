@@ -21,7 +21,7 @@ void _shell(char **av)
 		if (getline(&args, &size, stdin) == -1)
 		{
 			free(args);
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 		}
 		rm_newline(args);
 		ac = count_args(args);
