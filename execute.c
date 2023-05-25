@@ -4,7 +4,7 @@
  * execute - executes a command
  * @av: arguments to main
  * @argv: arguments to program
- *
+ * @env: environment variables
  * Return: 0 if succesful and 1 otherwise
  */
 
