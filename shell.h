@@ -30,4 +30,5 @@ char **allocate_space(int size);
 void _shell(char **av, char **env);
 void execute(char **av, char **argv, char **env);
 void rm_newline(char *str);
+char *find_path(char *command);
 #endif /* SHELL_H */

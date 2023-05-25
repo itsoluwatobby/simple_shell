@@ -22,6 +22,7 @@ void _shell(char **av, char **env)
 		if (getline(&args, &size, stdin) == -1)
 		{
 			free(args);
+			print_string("\n");
 			exit(EXIT_SUCCESS);
 		}
 		rm_newline(args);
