@@ -11,7 +11,6 @@
 int get_line(char **lineptr, size_t *n, int fd)
 {
 	static int defaultSize = 120;
-
 	ssize_t bufSize = 0;
 	ssize_t bytes = 0;
 	char *buffer = NULL, c;
@@ -34,11 +33,9 @@ int get_line(char **lineptr, size_t *n, int fd)
 	{
 		buffer[bytes] = c;
 		bytes++;
-
 		if (bytes >= bufSize)
 		{
-			bufSize = bufSize * 2;
-			buffer = reallocate_memory(buffer, bufSize);
+			buffer = reallocate_memory(buffer, (bufSize * 2));
 			*lineptr = buffer;
 			*n = bufSize;
 		}
@@ -47,6 +44,7 @@ int get_line(char **lineptr, size_t *n, int fd)
 	}
 	buffer[bytes] = '\0';
 
-	/*write(STDOUT_FILENO, *lineptr, bytes);*/
-	return (0);
+	if (bytes == 0 && c == '\0')
+		return (-1);
+	return (bytes);
 }
