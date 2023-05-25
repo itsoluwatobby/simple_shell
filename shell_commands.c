@@ -9,7 +9,7 @@
 
 void special_commands(char **command, char **env)
 {
-	/*printf("SET = %s    %s\n", command[0], command[1]);*/
+	/*print_string("SET = %s    %s\n", command[0], command[1]);*/
 	if (_strcmp(command[0], "exit") == 0)
 	{
 		__exit(command, env);
