@@ -13,6 +13,6 @@ int main(int argc, char **av, char **env)
 	(void) env;
 
 	if (argc == 1)
-		_shell(av);
+		_shell(av, env);
 	return (0);
 }

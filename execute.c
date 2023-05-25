@@ -8,9 +8,9 @@
  * Return: 0 if succesful and 1 otherwise
  */
 
-void execute(char **av, char **argv)
+void execute(char **av, char **argv, char **env)
 {
-	if (execve(argv[0], av, NULL) == -1)
+	if (execve(argv[0], av, env) == -1)
 	{
 		perror(av[0]);
 		free(argv);

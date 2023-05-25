@@ -3,10 +3,11 @@
 /**
  * _shell - simple shell functionality
  * @av : array of arguments
+ * @env: pointer to the environment var
  * Return: 0
  */
 
-void _shell(char **av)
+void _shell(char **av, char **env)
 {
 	char *args, **argv;
 	int ac;
@@ -36,7 +37,7 @@ void _shell(char **av)
 		}
 		if (id == 0)
 		{
-			execute(av, argv);
+			execute(av, argv, env);
 			free(argv);
 			free(args);
 		}

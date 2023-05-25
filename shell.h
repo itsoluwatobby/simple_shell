@@ -27,7 +27,7 @@ int _atoi(char *s);
 char *_strstr(char *haystack, char *needle);
 int count_args(char *str);
 char **allocate_space(int size);
-void _shell(char **av);
-void execute(char **av, char **argv);
+void _shell(char **av, char **env);
+void execute(char **av, char **argv, char **env);
 void rm_newline(char *str);
 #endif /* SHELL_H */
