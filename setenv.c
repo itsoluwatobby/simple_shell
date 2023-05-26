@@ -6,7 +6,7 @@
  * @value: value
  */
 
-void set_env(const char *name, const char *value)
+void set_env(char *name, char *value)
 {
 	char *new_var = NULL, **env = environ;
 	ssize_t len = 0;
@@ -33,7 +33,7 @@ void set_env(const char *name, const char *value)
 	{
 		*env = new_var;
 		environ[len + 1] = NULL;
-		free(new_var);
+		/*free(new_var);*/
 		return;
 	}
 	environ[len] = _strdup(new_var);
