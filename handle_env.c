@@ -2,12 +2,11 @@
 
 /**
  * handle_env - function that handles env command
+ * @env: environment variable
  */
 
-void handle_env(void)
+void handle_env(char **env)
 {
-	char **env = environ;
-
 	for (; *env != NULL; env++)
 	{
 		int length = 0;
