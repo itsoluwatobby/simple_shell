@@ -38,6 +38,6 @@ int get_line(char **lineptr, size_t *n, int fd);
 char *reallocate_memory(char *buf, int bufs);
 char *get_memory(int bufs);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void handle_env(char **env);
+int handle_env(char **env);
 
 #endif /* SHELL_H */

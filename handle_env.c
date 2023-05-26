@@ -5,7 +5,7 @@
  * @env: environment variable
  */
 
-void handle_env(char **env)
+int handle_env(char **env)
 {
 	for (; *env != NULL; env++)
 	{
@@ -16,4 +16,5 @@ void handle_env(char **env)
 		write(STDOUT_FILENO, *env, length);
 		write(STDOUT_FILENO, "\n", 1);
 	}
+	return (0);
 }
