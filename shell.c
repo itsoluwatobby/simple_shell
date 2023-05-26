@@ -9,7 +9,7 @@
 
 void _shell(char **av, char **env)
 {
-	char *args, **argv *delim = " \n\t";
+	char *args, **argv, *delim = " \n\t";
 	pid_t id;
 	size_t size;
 	int ac;
@@ -19,9 +19,10 @@ void _shell(char **av, char **env)
 		if (isatty(STDIN_FILENO))
 			print_string("$ ");
 		size = 0;
-		if (getline(&args, &size, stdin) == -1)
+		if (get_line(&args, &size, STDIN_FILENO) == -1)
 		{
 			free(args);
+			print_string("\n");
 			exit(EXIT_SUCCESS);
 		}
 		ac = count_args(args);
@@ -34,12 +35,13 @@ void _shell(char **av, char **env)
 		}
 		if ((!_strcmp(argv[0], "exit")) || (!_strcmp(argv[0], "env")))
 			special_commands(argv, args, env);
-		if ((!_strcmp(argv[0], "cd")))
+		/**
+		 * if ((!_strcmp(argv[0], "cd")))
 		{
 			change_dir(argv, env);
 			_free(argv, args, NULL);
 			continue;
-		}
+		}*/
 		id = fork();
 		if (id == -1)
 		{
@@ -54,7 +56,7 @@ void _shell(char **av, char **env)
 		else
 		{
 			wait(NULL);
-			_free(argv, args, env);
+			_free(argv, args, NULL);
 		}
 	}
 }

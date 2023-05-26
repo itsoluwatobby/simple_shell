@@ -12,13 +12,13 @@ void special_commands(char **command, char *args, char **env)
 {
 	if (_strcmp(command[0], "exit") == 0)
 	{
-		_free(command, args, env);
+		_free(command, args, NULL);
 		__exit(command);
 	}
 	if (_strcmp(command[0], "env") == 0)
 	{
-		handle_env();
-		_free(command, args, env);
+		handle_env(env);
+		_free(command, args, NULL);
 		exit(EXIT_SUCCESS);
 	}
 }

@@ -12,7 +12,7 @@ int _strcspn(char *s1, char *s2)
 	int res;
 
 	if (s1 == NULL || s2 == NULL)
-		return (0);
+		return (-1);
 	res = 0;
 	while (*s1)
 	{
