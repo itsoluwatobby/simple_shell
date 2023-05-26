@@ -1,5 +1,7 @@
 #include "shell.h"
 
+int fork_process(char *args, char **argv, char **av, char **env, pid_t id);
+
 /**
  * _shell - simple shell functionality
  * @av : array of arguments
@@ -30,27 +32,38 @@ void _shell(char **av, char **env)
 		argv = allocate_space(ac);
 		argv[0] = args;
 		if (special_commands(argv, env) != 0)
-		{
-			id = fork();
-			if (id == -1)
-			{
-				free(argv);
-				free(args);
-				exit(EXIT_FAILURE);
-			}
-			if (id == 0)
-			{
-				execute(av, argv, env);
-				free(argv);
-				free(args);
-			}
-			else
-			{
-				wait(NULL);
-				free(args);
-				free(argv);
-			}
-		}
+			fork_process(args, argv, av, env, id);
 	}
-	return;
+}
+
+/**
+ * fork_process - function that forks a process
+ * @argv: first argument
+ * @args: 2nd argument
+ * @av: 3rd argument
+ * @id: fork id
+ * @env: environment variable
+ */
+
+void fork_process(char *args, char **argv, char **av, char **env, pid_t id)
+{
+	id = fork();
+	if (id == -1)
+	{
+		free(argv);
+		free(args);
+		exit(EXIT_FAILURE);
+	}
+	if (id == 0)
+	{
+		execute(av, argv, env);
+		free(argv);
+		free(args);
+	}
+	else
+	{
+		wait(NULL);
+		free(args);
+		free(argv);
+	}
 }
