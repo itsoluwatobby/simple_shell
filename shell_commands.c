@@ -21,4 +21,10 @@ void special_commands(char **command, char *args, char **env)
 		_free(command, args, NULL);
 		exit(EXIT_SUCCESS);
 	}
+	if (_strcmp(command[0], "setenv") == 0)
+	{
+		set_env(command[1], command[2]);
+		_free(command, args, NULL);
+		exit(EXIT_SUCCESS);
+	}
 }

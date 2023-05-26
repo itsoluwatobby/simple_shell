@@ -46,5 +46,8 @@ void _free(char **av, char *args, char **env);
 void __exit(char **av);
 int handle_env(char **env);
 void set_env(const char *name, const char *value);
+void set_env(const char *name, const char *value);
+void unset_env(const char *name);
+char *find_path(char *command);
 
 #endif /* SHELL_H */

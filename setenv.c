@@ -1,13 +1,5 @@
 #include "shell.h"
 
-void set_env(const char *name, const char *value);
-
-int main(int __attribute__((unused))argc, char **argv)
-{
-	set_env(argv[2], argv[3]);
-	return (0);
-}
-
 /**
  * set_env - function that sets the env variable
  * @name: variable name
@@ -21,26 +13,30 @@ void set_env(const char *name, const char *value)
 
 	if (env == NULL)
 		return;
+	if (name == NULL || value == NULL)
+	{
+		perror("Error syntax! Enter setenv <name> <value>");
+		exit(EXIT_FAILURE);
+	}
 	new_var = malloc(strlen(name) + strlen(value) + 2);
 	if (!new_var)
 		return;
 	while (env[len] != NULL)
 		len++;
-
-	/*for (char **ev = environ; *ev != NULL; ev++)
-	{
-		if (strcmp(*ev, name) == 0)
-		{
-			free(new_var);
-			printf("%s FOUND\n", name);
-			return;
-		}
-	}*/
 	strcpy(new_var, name);
 	strcat(new_var, "=");
 	strcat(new_var, value);
 
-	environ[len] = new_var;
+	while (*env != NULL && strcmp(*env, name) != 0)
+		env++;
+	if (*env != NULL)
+	{
+		*env = new_var;
+		environ[len + 1] = NULL;
+		free(new_var);
+		return;
+	}
+	environ[len] = _strdup(new_var);
 	environ[len + 1] = NULL;
-	free(new_var);
+	/*free(new_var);*/
 }

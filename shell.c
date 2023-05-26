@@ -1,5 +1,7 @@
 #include "shell.h"
 
+void fork_process(pid_t id, char **argv, char **av, char *args, char **env);
+
 /**
  * _shell - simple shell functionality
  * @av : array of arguments
@@ -33,7 +35,8 @@ void _shell(char **av, char **env)
 			_free(argv, args, NULL);
 			continue;
 		}
-		if ((!_strcmp(argv[0], "exit")) || (!_strcmp(argv[0], "env")))
+		if ((!_strcmp(argv[0], "exit")) || (!_strcmp(argv[0], "env")) ||
+				(!_strcmp(argv[0], "setenv")))
 			special_commands(argv, args, env);
 		/**
 		 * if ((!_strcmp(argv[0], "cd")))
@@ -43,20 +46,34 @@ void _shell(char **av, char **env)
 			continue;
 		}*/
 		id = fork();
-		if (id == -1)
-		{
-			_free(argv, args, env);
-			exit(EXIT_FAILURE);
-		}
-		if (id == 0)
-		{
-			execute(av, argv, env);
-			_free(argv, args, NULL);
-		}
-		else
-		{
-			wait(NULL);
-			_free(argv, args, NULL);
-		}
+		fork_process(id, argv, av, args, env);
+	}
+}
+
+/**
+ * fork_process - function that forks a process
+ * @id: fork process id
+ * @argv: 1st argument
+ * @args: 2nd argument
+ * @av: 3rd argument
+ * @env: environment variable
+ */
+
+void fork_process(pid_t id, char **argv, char **av, char *args, char **env)
+{
+	if (id == -1)
+	{
+		_free(argv, args, env);
+		exit(EXIT_FAILURE);
+	}
+	if (id == 0)
+	{
+		execute(av, argv, env);
+		_free(argv, args, NULL);
+	}
+	else
+	{
+		wait(NULL);
+		_free(argv, args, NULL);
 	}
 }
