@@ -10,7 +10,6 @@
 void _shell(char **av, char **env)
 {
 	char *args, **argv;
-	int ac;
 	pid_t id;
 	size_t size;
 
@@ -24,10 +23,9 @@ void _shell(char **av, char **env)
 			free(args);
 			exit(EXIT_SUCCESS);
 		}
-		rm_newline(args);
-		ac = count_args(args);
-		argv = allocate_space(ac);
-		argv[0] = args;
+		argv = parse_args(args);
+		if (!args)
+			perror(av[0]);
 		id = fork();
 		if (id == -1)
 		{
