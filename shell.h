@@ -37,7 +37,8 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void special_commands(char **command, char *args, char **env);
 char *_strtok(char *str, char *sep);
 void special_commands(char **command, char *args, char **env);
-void __exit(char **av, char **env);
+void __exit(char **av);
 int change_dir(char **av, char **env);
 void _free(char **av, char *args, char **env);
+void __exit(char **av);
 #endif /* SHELL_H */
