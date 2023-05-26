@@ -9,9 +9,10 @@
 
 void _shell(char **av, char **env)
 {
-	char *args, **argv;
+	char *args, **argv *delim = " \n\t";
 	pid_t id;
 	size_t size;
+	int ac;
 
 	while (1)
 	{
@@ -23,27 +24,37 @@ void _shell(char **av, char **env)
 			free(args);
 			exit(EXIT_SUCCESS);
 		}
-		argv = parse_args(args);
-		if (!args)
-			perror(av[0]);
+		ac = count_args(args);
+		argv = allocate_space(ac);
+		get_args(args, argv, delim);
+		if (!args || !argv)
+		{
+			_free(argv, args, NULL);
+			continue;
+		}
+		if ((!_strcmp(argv[0], "exit")) || (!_strcmp(argv[0], "env")))
+			special_commands(argv, args, env);
+		if ((!_strcmp(argv[0], "cd")))
+		{
+			change_dir(argv, env);
+			_free(argv, args, NULL);
+			continue;
+		}
 		id = fork();
 		if (id == -1)
 		{
-			free(argv);
-			free(args);
+			_free(argv, args, env);
 			exit(EXIT_FAILURE);
 		}
 		if (id == 0)
 		{
 			execute(av, argv, env);
-			free(argv);
-			free(args);
+			_free(argv, args, NULL);
 		}
 		else
 		{
 			wait(NULL);
-			free(args);
-			free(argv);
+			_free(argv, args, env);
 		}
 	}
 }

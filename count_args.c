@@ -17,10 +17,10 @@ int count_args(char *str)
 		ac++;
 	}
 	temp[ac] = '\0';
-	tok = strtok(temp, " \n");
+	tok = _strtok(temp, " \n");
 	while (tok)
 	{
-		tok = strtok(NULL, " \n");
+		tok = _strtok(NULL, " \n");
 		ac++;
 	}
 	return (ac);
