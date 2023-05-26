@@ -7,7 +7,7 @@
  * Return: onsuccess (0)
  */
 
-int special_commands(char **command, char __attribute__((unused))**env)
+int special_commands(char **command, char **env)
 {
 	/**
 	 * if (_strcmp(command[0], "exit") == 0)
@@ -18,7 +18,7 @@ int special_commands(char **command, char __attribute__((unused))**env)
 	 */
 	if (_strcmp(command[0], "env") == 0)
 	{
-		handle_env();
+		handle_env(env);
 		return (0);
 	}
 	/**
