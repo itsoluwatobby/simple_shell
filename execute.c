@@ -10,7 +10,8 @@
 
 void execute(char **av, char **argv, char **env)
 {
-	if (execve(argv[0], av, env) == -1)
+	(void)env;
+	if (execve(argv[0], av, environ) == -1)
 	{
 		perror(av[0]);
 		free(argv);

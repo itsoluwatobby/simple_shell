@@ -19,7 +19,7 @@ void _shell(char **av, char **env)
 		if (isatty(STDIN_FILENO))
 			print_string("$ ");
 		size = 0;
-		if (getline(&args, &size, stdin) == -1)
+		if (get_line(&args, &size, STDIN_FILENO) == -1)
 		{
 			free(args);
 			print_string("\n");
@@ -29,24 +29,28 @@ void _shell(char **av, char **env)
 		ac = count_args(args);
 		argv = allocate_space(ac);
 		argv[0] = args;
-		id = fork();
-		if (id == -1)
+		if (special_commands(argv, env) != 0)
 		{
-			free(argv);
-			free(args);
-			exit(EXIT_FAILURE);
-		}
-		if (id == 0)
-		{
-			execute(av, argv, env);
-			free(argv);
-			free(args);
-		}
-		else
-		{
-			wait(NULL);
-			free(args);
-			free(argv);
+			id = fork();
+			if (id == -1)
+			{
+				free(argv);
+				free(args);
+				exit(EXIT_FAILURE);
+			}
+			if (id == 0)
+			{
+				execute(av, argv, env);
+				free(argv);
+				free(args);
+			}
+			else
+			{
+				wait(NULL);
+				free(args);
+				free(argv);
+			}
 		}
 	}
+	return;
 }

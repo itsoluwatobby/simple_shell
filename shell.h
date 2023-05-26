@@ -12,6 +12,8 @@
 #include <errno.h>
 #include <signal.h>
 
+extern char **environ;
+
 int _putchar(char c);
 int print_string(char *str);
 int _strlen(char *str);
@@ -31,4 +33,11 @@ void _shell(char **av, char **env);
 void execute(char **av, char **argv, char **env);
 void rm_newline(char *str);
 char *find_path(char *command);
+int special_commands(char **command, char **env);
+int get_line(char **lineptr, size_t *n, int fd);
+char *reallocate_memory(char *buf, int bufs);
+char *get_memory(int bufs);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void handle_env(void);
+
 #endif /* SHELL_H */
