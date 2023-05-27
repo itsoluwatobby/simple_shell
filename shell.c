@@ -47,7 +47,7 @@ void _shell(char **av, char **env)
 }
 
 /**
- * fork_process - function that forks a process
+ * fork_process - function that forks a procesess
  * @id: fork process id
  * @argv: 1st argument
  * @args: 2nd argument
