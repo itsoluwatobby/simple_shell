@@ -27,4 +27,5 @@ void special_commands(char **command, char *args, char **env)
 		_free(command, args, NULL);
 		exit(EXIT_SUCCESS);
 	}
+
 }

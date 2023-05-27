@@ -49,4 +49,5 @@ void set_env(char *name, char *value);
 void unset_env(char *name);
 char *find_path(char *command);
 void free_vec(char **vec);
+
 #endif /* SHELL_H */

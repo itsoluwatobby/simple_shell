@@ -21,6 +21,8 @@ int get_line(char **lineptr, size_t *n, int fd)
 	{
 		bufSize = defaultSize;
 		buffer = get_memory(bufSize);
+		if (buffer == NULL)
+			return (-1);
 		*lineptr = buffer;
 		*n = bufSize;
 	}
@@ -43,7 +45,6 @@ int get_line(char **lineptr, size_t *n, int fd)
 			break;
 	}
 	buffer[bytes] = '\0';
-
 	if (bytes == 0 && c == '\0')
 		return (-1);
 	return (bytes);
