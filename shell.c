@@ -1,6 +1,6 @@
 #include "shell.h"
 
-void fork_process(pid_t id, char **argv, char **av, char *args, char **env)
+void fork_process(pid_t id, char **argv, char **av, char *args, char **env);
 
 /**
  * _shell - simple shell functionality
@@ -47,7 +47,7 @@ void _shell(char **av, char **env)
 }
 
 /**
- * fork_process - function that forks a process
+ * fork_process - function that forks a procesess
  * @id: fork process id
  * @argv: 1st argument
  * @args: 2nd argument
