@@ -1,6 +1,6 @@
 #include "shell.h"
 
-void fork_process(char *args, char **argv, char **av, char **env, pid_t id);
+void fork_process(pid_t id, char **argv, char **av, char *args, char **env)
 
 /**
  * _shell - simple shell functionality
@@ -11,10 +11,10 @@ void fork_process(char *args, char **argv, char **av, char **env, pid_t id);
 
 void _shell(char **av, char **env)
 {
-	char *args, **argv;
-	int ac;
+	char *args, **argv, *delim = " \n\t";
 	pid_t id;
 	size_t size;
+	int ac;
 
 	while (1)
 	{
@@ -27,43 +27,52 @@ void _shell(char **av, char **env)
 			print_string("\n");
 			exit(EXIT_SUCCESS);
 		}
-		rm_newline(args);
 		ac = count_args(args);
 		argv = allocate_space(ac);
-		argv[0] = args;
-		if (special_commands(argv, env) != 0)
-			fork_process(args, argv, av, env, id);
+		get_args(args, argv, delim);
+		if (!args || !argv)
+		{
+			_free(argv, args, NULL);
+			continue;
+		}
+		if ((!_strcmp(argv[0], "exit")) || (!_strcmp(argv[0], "env")) ||
+				(!_strcmp(argv[0], "setenv")))
+		{
+			special_commands(argv, args, env);
+			_free(argv, args, NULL);
+		}
+		id = fork();
+		fork_process(id, argv, av, args, env);
 	}
 }
 
 /**
  * fork_process - function that forks a process
- * @argv: first argument
+ * @id: fork process id
+ * @argv: 1st argument
  * @args: 2nd argument
  * @av: 3rd argument
- * @id: fork id
  * @env: environment variable
  */
 
-void fork_process(char *args, char **argv, char **av, char **env, pid_t id)
+void fork_process(pid_t id, char **argv, char **av, char *args, char **env)
 {
-	id = fork();
 	if (id == -1)
 	{
-		free(argv);
-		free(args);
+		_free(argv, args, env);
+
 		exit(EXIT_FAILURE);
 	}
 	if (id == 0)
 	{
 		execute(av, argv, env);
-		free(argv);
-		free(args);
+		_free(argv, args, NULL);
+
 	}
 	else
 	{
 		wait(NULL);
-		free(args);
-		free(argv);
+		_free(argv, args, NULL);
+
 	}
 }

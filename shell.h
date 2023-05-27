@@ -32,12 +32,22 @@ char **allocate_space(int size);
 void _shell(char **av, char **env);
 void execute(char **av, char **argv, char **env);
 void rm_newline(char *str);
-char *find_path(char *command);
-int special_commands(char **command, char **env);
+int get_args(char *args, char **argv, char *delim);
+char *get_memory(int bufs);
 int get_line(char **lineptr, size_t *n, int fd);
 char *reallocate_memory(char *buf, int bufs);
-char *get_memory(int bufs);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void special_commands(char **command, char *args, char **env);
+char *_strtok(char *str, char *sep);
+void special_commands(char **command, char *args, char **env);
+void __exit(char **av);
+int change_dir(char **av, char **env);
+void _free(char **av, char *args, char **env);
+void __exit(char **av);
 int handle_env(char **env);
+void set_env(char *name, char *value);
+void unset_env(char *name);
+char *find_path(char *command);
+void free_vec(char **vec);
 
 #endif /* SHELL_H */

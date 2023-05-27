@@ -3,29 +3,29 @@
 /**
  * special_commands - function that checks for some specific commands
  * @command: command to check
+ * @args: the arguments returned from getline
  * @env: the environment
- * Return: onsuccess (0)
+ * Return: void
  */
 
-int special_commands(char **command, char **env)
+void special_commands(char **command, char *args, char **env)
 {
-	/**
-	 * if (_strcmp(command[0], "exit") == 0)
-	 * {
-	 * __exit(command, env);
-	 * free(env);
-	 * }
-	 */
+	if (_strcmp(command[0], "exit") == 0)
+	{
+		_free(command, args, NULL);
+		__exit(command);
+	}
 	if (_strcmp(command[0], "env") == 0)
 	{
 		handle_env(env);
-		return (0);
+		_free(command, args, NULL);
+		exit(EXIT_SUCCESS);
 	}
-	/**
-	 * if (_strcmp(command[0], "cd") == 0)
-	 * {
-	 * change_dir(command, env);
-	 * }
-	 */
-	return (-1);
+	if (_strcmp(command[0], "setenv") == 0)
+	{
+		set_env(command[1], command[2]);
+		_free(command, args, NULL);
+		exit(EXIT_SUCCESS);
+	}
+
 }
