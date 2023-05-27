@@ -37,14 +37,10 @@ void _shell(char **av, char **env)
 		}
 		if ((!_strcmp(argv[0], "exit")) || (!_strcmp(argv[0], "env")) ||
 				(!_strcmp(argv[0], "setenv")))
-			special_commands(argv, args, env);
-		/**
-		 * if ((!_strcmp(argv[0], "cd")))
 		{
-			change_dir(argv, env);
+			special_commands(argv, args, env);
 			_free(argv, args, NULL);
-			continue;
-		}*/
+		}
 		id = fork();
 		fork_process(id, argv, av, args, env);
 	}

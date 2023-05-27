@@ -24,6 +24,5 @@ int get_args(char *args, char **argv, char *delim)
 		tok = _strtok(NULL, delim);
 	}
 	argv[i] = NULL;
-	free(temp);
 	return (i);
 }

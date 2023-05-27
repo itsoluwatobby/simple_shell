@@ -11,9 +11,9 @@
 void _free(char **av, char *args, char **env)
 {
 	if (av)
-		free(av);
+		free_vec(av);
 	if (args)
 		free(args);
 	if (env)
-		free(env);
+		free_vec(env);
 }

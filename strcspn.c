@@ -14,7 +14,7 @@ int _strcspn(char *s1, char *s2)
 	if (s1 == NULL || s2 == NULL)
 		return (-1);
 	res = 0;
-	while (*s1)
+	while (*s1 != '\0')
 	{
 		if (_strchr(s2, *s1))
 			return (res);
