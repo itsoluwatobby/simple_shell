@@ -4,6 +4,7 @@
  * handle_env - function that handles env command
  * @env: environment variables
  * Return: onsuccess (0)
+ * @env: environment variables
  */
 
 int handle_env(char **env)
